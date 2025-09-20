@@ -3,8 +3,8 @@
     // 타겟 및 모듈 설정
     "target": "ES2022",                     // 최신 JavaScript 기능 사용
     "module": "ESNext",                      // ES 모듈 시스템 사용
-    "lib": ["ES2022"],                      // ES2022 라이브러리 포함
-    "moduleResolution": "bundler",           // 최신 번들러 호환 모듈 해결
+    "lib": ["ES2022", "DOM", "ESNext"],     // ES2022, DOM, ESNext 라이브러리 포함
+    "moduleResolution": "bundler",           // 최신 모듈 해결 방식
 
     // 출력 설정
     "outDir": "./dist",                      // 컴파일된 파일 출력 디렉토리

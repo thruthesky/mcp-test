@@ -5,7 +5,7 @@
  * Railway에서 실행되며, REST API 형태로 여행 정보를 제공합니다.
  */
 
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import { TravelAdvisoryMCPServer } from './index.js';
 
@@ -90,7 +90,7 @@ app.use(express.json()); // JSON 파싱
 app.use(express.static('public')); // 정적 파일 서빙
 
 // 기본 정보 엔드포인트
-app.get('/', (_req, res) => {
+app.get('/', (_req: Request, res: Response) => {
   res.json({
     name: '해외 여행 공지사항 API',
     version: '1.0.0',
@@ -116,7 +116,7 @@ app.get('/', (_req, res) => {
 });
 
 // 헬스 체크 엔드포인트
-app.get('/health', (_req, res) => {
+app.get('/health', (_req: Request, res: Response) => {
   res.json({
     status: 'healthy',
     timestamp: new Date().toISOString(),
@@ -131,12 +131,12 @@ app.get('/health', (_req, res) => {
  * 특정 국가 여행 경보 조회
  * GET /api/advisory/:countryCode
  */
-app.get('/api/advisory/:countryCode', async (req, res) => {
+app.get('/api/advisory/:countryCode', async (req: Request, res: Response) => {
   try {
     const { countryCode } = req.params;
 
-    // 국가 코드 검증
-    if (!/^[A-Z]{2}$/.test(countryCode)) {
+    // 국가 코드 존재 및 형식 검증
+    if (!countryCode || !/^[A-Z]{2}$/.test(countryCode)) {
       return res.status(400).json({
         error: '잘못된 국가 코드입니다. 2자리 대문자를 사용하세요 (예: KR, JP, US)'
       });
@@ -161,7 +161,7 @@ app.get('/api/advisory/:countryCode', async (req, res) => {
  * 전체 여행 경보 목록 조회
  * GET /api/advisories?level=1
  */
-app.get('/api/advisories', async (req, res) => {
+app.get('/api/advisories', async (req: Request, res: Response) => {
   try {
     const level = req.query.level ? parseInt(req.query.level as string) : undefined;
 
@@ -192,13 +192,13 @@ app.get('/api/advisories', async (req, res) => {
  * 비자 정보 조회
  * GET /api/visa/:countryCode?nationality=KR
  */
-app.get('/api/visa/:countryCode', async (req, res) => {
+app.get('/api/visa/:countryCode', async (req: Request, res: Response) => {
   try {
     const { countryCode } = req.params;
-    const nationality = req.query.nationality as string;
+    const nationality = req.query.nationality as string | undefined;
 
-    // 국가 코드 검증
-    if (!/^[A-Z]{2}$/.test(countryCode)) {
+    // 국가 코드 존재 및 형식 검증
+    if (!countryCode || !/^[A-Z]{2}$/.test(countryCode)) {
       return res.status(400).json({
         error: '잘못된 국가 코드입니다. 2자리 대문자를 사용하세요 (예: KR, JP, US)'
       });
@@ -231,12 +231,12 @@ app.get('/api/visa/:countryCode', async (req, res) => {
  * 긴급 연락처 조회
  * GET /api/emergency/:countryCode
  */
-app.get('/api/emergency/:countryCode', async (req, res) => {
+app.get('/api/emergency/:countryCode', async (req: Request, res: Response) => {
   try {
     const { countryCode } = req.params;
 
-    // 국가 코드 검증
-    if (!/^[A-Z]{2}$/.test(countryCode)) {
+    // 국가 코드 존재 및 형식 검증
+    if (!countryCode || !/^[A-Z]{2}$/.test(countryCode)) {
       return res.status(400).json({
         error: '잘못된 국가 코드입니다. 2자리 대문자를 사용하세요 (예: KR, JP, US)'
       });
@@ -258,7 +258,7 @@ app.get('/api/emergency/:countryCode', async (req, res) => {
 });
 
 // 404 에러 핸들러
-app.use((_req, res) => {
+app.use((_req: Request, res: Response) => {
   res.status(404).json({
     error: '요청한 엔드포인트를 찾을 수 없습니다',
     availableEndpoints: [
@@ -274,7 +274,7 @@ app.use((_req, res) => {
 });
 
 // 전역 에러 핸들러
-app.use((error: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
+app.use((error: any, _req: Request, res: Response, _next: NextFunction) => {
   console.error('서버 에러:', error);
   res.status(500).json({
     error: '내부 서버 오류가 발생했습니다',

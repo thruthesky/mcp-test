@@ -9,11 +9,8 @@ WORKDIR /app
 # 패키지 파일 복사
 COPY package*.json ./
 
-# 의존성 설치
-RUN npm ci --only=production
-
-# TypeScript 컴파일러 설치 (빌드용)
-RUN npm install -g typescript
+# 모든 의존성 설치 (빌드용 devDependencies 포함)
+RUN npm ci
 
 # 소스 코드 복사
 COPY . .
@@ -21,7 +18,7 @@ COPY . .
 # TypeScript 빌드
 RUN npm run build
 
-# 불필요한 dev dependencies 제거
+# 불필요한 dev dependencies 제거 (빌드 완료 후)
 RUN npm prune --production
 
 # 포트 설정 (Railway가 동적으로 할당)
