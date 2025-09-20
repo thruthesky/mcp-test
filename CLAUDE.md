@@ -592,5 +592,63 @@ travel-advisory-mcp/
 4. PR 템플릿 준수
 5. Code Review 후 병합
 
+## 🚀 Railway 배포 정보
+
+### 배포된 서비스 URL
+**Live API Server**: `https://mcp-test-production-5d0b.up.railway.app`
+
+### 실시간 테스트 방법
+
+#### 1. 헬스체크 (서버 상태 확인)
+```bash
+curl https://mcp-test-production-5d0b.up.railway.app/health
+```
+
+#### 2. 기본 API 정보 조회
+```bash
+curl https://mcp-test-production-5d0b.up.railway.app/
+```
+
+#### 3. 일본 여행 경보 조회 (코로나25 4단계 경보!)
+```bash
+curl https://mcp-test-production-5d0b.up.railway.app/api/advisory/JP
+```
+
+#### 4. 전체 여행 경보 목록
+```bash
+curl https://mcp-test-production-5d0b.up.railway.app/api/advisories
+```
+
+#### 5. 특정 경보 단계 필터링 (2단계 이상)
+```bash
+curl "https://mcp-test-production-5d0b.up.railway.app/api/advisories?level=2"
+```
+
+#### 6. 한국인 미국 비자 정보
+```bash
+curl "https://mcp-test-production-5d0b.up.railway.app/api/visa/US?nationality=KR"
+```
+
+#### 7. 일본 긴급 연락처
+```bash
+curl https://mcp-test-production-5d0b.up.railway.app/api/emergency/JP
+```
+
+### 웹 브라우저 테스트
+다음 URL들을 브라우저에서 직접 접속하여 JSON 응답을 확인할 수 있습니다:
+
+- **기본 정보**: https://mcp-test-production-5d0b.up.railway.app/
+- **헬스체크**: https://mcp-test-production-5d0b.up.railway.app/health
+- **일본 경보**: https://mcp-test-production-5d0b.up.railway.app/api/advisory/JP
+- **전체 경보**: https://mcp-test-production-5d0b.up.railway.app/api/advisories
+
+### 브라우저 확장 프로그램 활용
+- **JSON Formatter** 확장 프로그램 설치 시 더 읽기 쉬운 형태로 표시됩니다
+- **Postman** 또는 **Insomnia** 같은 API 클라이언트 도구로 테스트 가능
+
+### GitHub 저장소
+- **Source Code**: https://github.com/thruthesky/mcp-test
+- **Issues & Feedback**: GitHub Issues 페이지 활용
+
 ---
 **📌 주의: 이 가이드라인은 해외 여행 공지사항 MCP 서버 개발 및 배포에 특화되어 있으며, 모든 개발 과정에서 반드시 준수해야 합니다. 사용자의 안전한 여행을 위한 정확하고 신뢰할 수 있는 정보 제공이 최우선 목표입니다.**
