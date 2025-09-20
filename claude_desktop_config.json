@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "travel-advisory": {
+      "command": "node",
+      "args": ["/Users/thruthesky/tmp/mcp/dist/index.js"],
+      "env": {}
+    }
+  }
+}

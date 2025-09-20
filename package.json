@@ -1,0 +1,45 @@
+{
+  "name": "travel-advisory-mcp-server",
+  "version": "1.0.0",
+  "description": "해외 여행 공지사항 정보를 제공하는 MCP (Model Context Protocol) 서버",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "travel-advisory-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "dev:web": "tsx src/server.ts",
+    "start": "node dist/server.js",
+    "start:mcp": "node dist/index.js",
+    "clean": "rm -rf dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "travel",
+    "advisory",
+    "travel-safety"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.18.1",
+    "axios": "^1.12.2",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.5.2",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "compilerOptions": {
+    // 타겟 및 모듈 설정
+    "target": "ES2022",                     // 최신 JavaScript 기능 사용
+    "module": "ESNext",                      // ES 모듈 시스템 사용
+    "lib": ["ES2022"],                      // ES2022 라이브러리 포함
+    "moduleResolution": "bundler",           // 최신 번들러 호환 모듈 해결
+
+    // 출력 설정
+    "outDir": "./dist",                      // 컴파일된 파일 출력 디렉토리
+    "rootDir": "./src",                      // 소스 파일 루트 디렉토리
+    "declaration": true,                     // .d.ts 타입 선언 파일 생성
+    "declarationMap": true,                  // 선언 파일 소스맵 생성
+    "sourceMap": true,                       // 소스맵 생성 (디버깅용)
+
+    // 엄격한 타입 체크 (CLAUDE.md 가이드라인 준수)
+    "strict": true,                          // 모든 엄격한 타입 체크 옵션 활성화
+    "noImplicitAny": true,                   // any 타입 암묵적 사용 금지
+    "strictNullChecks": true,                // null/undefined 체크 강화
+    "strictFunctionTypes": true,             // 함수 타입 체크 강화
+    "strictBindCallApply": true,             // bind/call/apply 메서드 체크 강화
+    "strictPropertyInitialization": true,    // 클래스 속성 초기화 체크
+    "noImplicitThis": true,                  // this 타입 암묵적 사용 금지
+    "alwaysStrict": true,                    // 'use strict' 모드 강제
+
+    // 추가 체크
+    "noUnusedLocals": true,                  // 사용하지 않는 지역 변수 체크
+    "noUnusedParameters": true,              // 사용하지 않는 매개변수 체크
+    "noImplicitReturns": true,               // 모든 코드 경로에서 반환값 체크
+    "noFallthroughCasesInSwitch": true,      // switch문 fallthrough 체크
+    "noUncheckedIndexedAccess": true,        // 인덱스 접근 시 undefined 가능성 체크
+
+    // 모듈 해결 옵션
+    "esModuleInterop": true,                 // CommonJS 모듈 호환성
+    "allowSyntheticDefaultImports": true,    // default import 허용
+    "resolveJsonModule": true,               // JSON 파일 import 허용
+
+    // 기타 옵션
+    "skipLibCheck": true,                    // 라이브러리 타입 체크 건너뛰기
+    "forceConsistentCasingInFileNames": true,// 파일명 대소문자 일관성 체크
+    "allowJs": false,                        // JavaScript 파일 컴파일 비활성화
+    "checkJs": false                         // JavaScript 파일 타입 체크 비활성화
+  },
+  "include": [
+    "src/**/*"                                // src 디렉토리 하위 모든 TypeScript 파일 포함
+  ],
+  "exclude": [
+    "node_modules",                           // node_modules 제외
+    "dist",                                   // 빌드 출력 디렉토리 제외
+    "**/*.test.ts",                          // 테스트 파일 제외
+    "**/*.spec.ts"                           // spec 파일 제외
+  ]
+}
